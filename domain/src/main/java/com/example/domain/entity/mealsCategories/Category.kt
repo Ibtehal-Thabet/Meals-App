@@ -1,4 +1,4 @@
-package com.example.domain.entity.meals
+package com.example.domain.entity.mealsCategories
 
 data class Category(
     val idCategory: String?="",

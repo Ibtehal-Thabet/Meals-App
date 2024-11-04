@@ -1,10 +1,15 @@
 package com.example.orangelastsession.di
 
 
+import android.content.Context
+import com.example.data.network.NetworkStatusTracker
 import com.example.data.remote.meals.MealsApi
+import com.example.data.repo.network.NetworkRepoImpl
+import com.example.domain.repo.network.NetworkRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -40,5 +45,17 @@ object NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): MealsApi {
         return retrofit.create(MealsApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNetworkStatusTracker(@ApplicationContext context: Context): NetworkStatusTracker {
+        return NetworkStatusTracker(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNetworkRepository(networkStatusTracker: NetworkStatusTracker): NetworkRepo {
+        return NetworkRepoImpl(networkStatusTracker)
     }
 }
