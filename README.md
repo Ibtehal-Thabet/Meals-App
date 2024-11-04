@@ -6,3 +6,7 @@
 -  Kotlin Flows
 -  Dependency Injection (Dagger Hilt)
 -  Retrofit
+-  Coil
+-  Lottie
+-  Firebase For Authentication
+-  Firestore For Save Favorites
